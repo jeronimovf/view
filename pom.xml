@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.jus.trt23</groupId>
+    <artifactId>view</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>view</name>
+
+    <properties>
+        <!-- Maven -->
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <ambiente>desenvolvimento</ambiente>
+        <!-- Plugin Version -->
+        <properties.maven.plugin.version>1.0-alpha-2</properties.maven.plugin.version>
+        <maven-deploy-plugin.version>2.8</maven-deploy-plugin.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-ejb-plugin.version>2.5</maven-ejb-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <maven-ear-plugin.version>2.10</maven-ear-plugin.version>
+        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <jboss-as-maven-plugin.version>7.7.Final</jboss-as-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.6</nexus-staging-maven-plugin.version>
+
+        <!-- Dependências -->
+        <ejb.version>3.1</ejb.version>
+        <java.version>1.7</java.version>
+        <javaee-api.version>7.0</javaee-api.version>
+        <hibernate-core.version>4.0.1.Final</hibernate-core.version>
+        <primefaces.version>5.1</primefaces.version>
+        <primefaces-theme.version>1.0.10</primefaces-theme.version>
+        <prettyfaces.version>2.0.12.Final</prettyfaces.version>
+        <cas-client-core.version>3.1.10</cas-client-core.version>
+        <commons-io.version>2.4</commons-io.version>
+        <jboss-jsf-api_2.1_spec.version>2.1.7</jboss-jsf-api_2.1_spec.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
+        <log4j-api.version>2.0-beta9</log4j-api.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>6.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>					
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>nexus-deployment</serverId>
+                    <nexusUrl>http://sede-desenv01:8081/nexus/</nexusUrl>
+                </configuration>
+            </plugin>
+        </plugins>
+		
+        <finalName>view</finalName>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>br.jus.trt23.maven.profile.desenvolvimento</id>
+            <activation>
+                <property>
+                    <name>ambiente</name>
+                    <value>desenvolvimento</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.as.plugins</groupId>
+                        <artifactId>jboss-as-maven-plugin</artifactId>
+                        <version>${jboss-as-maven-plugin.version}</version>
+                        <configuration>
+                            <password>123456</password>
+                            <username>admin</username>
+
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>nexus-deployment</serverId>
+                            <nexusUrl>http://sede-desenv01:8081/nexus/</nexusUrl>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-deployment</id>
+                    <url>http://sede-desenv01:8081/nexus/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>br.jus.trt23.maven.profile.producao</id>
+            <activation>
+                <property>
+                    <name>ambiente</name>
+                    <value>producao</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.as.plugins</groupId>
+                        <artifactId>jboss-as-maven-plugin</artifactId>
+                        <version>${jboss-as-maven-plugin.version}</version>
+                        <configuration>
+                            <password>123456</password>
+                            <username>admin</username>
+
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>nexus-deployment</serverId>
+                            <nexusUrl>http://sede-desenv01:8081/nexus/</nexusUrl>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <distributionManagement>
+                <repository>
+                    <id>nexus-deployment</id>
+                    <url>http://sede-desenv01:8081/nexus/content/repositories/releases</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>br.jus.trt23.maven.profile.homologacao</id>
+            <activation>
+                <property>
+                    <name>ambiente</name>
+                    <value>homologacao</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.as.plugins</groupId>
+                        <artifactId>jboss-as-maven-plugin</artifactId>
+                        <version>${jboss-as-maven-plugin.version}</version>
+                        <configuration>
+                            <password>123456</password>
+                            <username>admin</username>
+
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>nexus-deployment</serverId>
+                            <nexusUrl>http://sede-desenv01:8081/nexus/</nexusUrl>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <distributionManagement>
+                <repository>
+                    <id>nexus-deployment</id>
+                    <url>http://sede-desenv01:8081/nexus/content/repositories/releases</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+
+        <profile>
+            <id>br.jus.trt23.maven.profile.repositorios</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <id>nexus-public</id>
+                    <name>Repositório Public Nexus TRT 23</name>
+                    <url>http://sede-desenv01:8081/nexus/content/groups/Public/</url>
+                </repository>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <id>nexus-releasess</id>
+                    <name>Repositório Releases Nexus TRT 23</name>
+                    <url>http://sede-desenv01:8081/nexus/content/repositories/releases/</url>
+                </repository>
+
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <id>nexus-snapshots</id>
+                    <name>Repositório Snapshots Nexus TRT 23</name>
+                    <url>http://sede-desenv01:8081/nexus/content/repositories/snapshots/</url>
+                </repository>
+
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-deployment</id>
+                    <name>Repositório Nexus TRT 23</name>
+                    <url>http://sede-desenv01:8081/nexus</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus-jboss</id>
+                    <name>Repositório Nexus Jboss</name>
+                    <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+
+
+
+</project>

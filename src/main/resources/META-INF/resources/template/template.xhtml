@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>	
+		<f:facet name="first"><meta http-equiv="X-UA-Compatible" content="IE=edge" /></f:facet>		
+		<style type="text/css">
+		    .fonte12
+		    {
+		    	font-size: 12px;
+		    }
+		    .fonte12Bold
+		    {
+		    	font-size: 12px;
+		    	font-weight: bold;		    
+		    }
+		    .fonte13
+		    {
+		    	font-size: 13px;		    		   
+		    }
+		    .fonte14
+		    {
+		    	font-size: 14px;		    		   
+		    }
+		    .fonte15
+		    {
+		    	font-size: 15px;		    		   
+		    }
+		    .fonte14Bold
+		    {
+		    	font-size: 14px;
+		    	font-weight: bold;		    
+		    }
+		    .fonte12BoldCenter
+		    {
+		    	font-size: 12px;
+		    	font-weight: bold;
+		    	text-align: center;
+		    }
+		    .maiusculo
+		    {
+		    	text-transform: uppercase;
+		    }
+		    .stike
+		    {
+		    	text-decoration: line-through;
+		    }		
+		    .bold
+		    {
+		    	font-weight: bold;		    
+		    }
+		    .exclusaoSolicitada
+		    {
+		    	text-decoration: line-through;
+		    	color: #cc9966;
+		    }	
+		    .exclusaoIndeferida
+		    {
+		    	color: #FF0000;
+		    }
+		    .inclusaoSolicitada
+		    {
+		    	color: #cc9966;
+		    }	
+		    .inclusaoDeferida
+		    {
+		    	color: #009933;
+		    }	
+		    .certificadoDigital
+		    {
+		    	color: #0000ff;
+		    }
+		    .invalido
+		    {
+                background-color: #FFE4B5 !important;
+                background-image: none !important;                
+		    }	    
+		    .valido
+		    {
+                background-color: #98FB98 !important;
+                background-image: none !important;                
+		    }	
+		    .ui-selectoneradio label{ padding-right: 15px !important; }
+		    
+		    .ten-percent {width: 10%;}
+		    .fifteen-percent {width: 15%;}
+		    .twenty-percent {width: 20%;}
+		    .twenty-five-percent {width: 25%;}
+		    .thirdy-percent {width: 30%;}
+		    .thirdy-five-percent {width: 35%;}
+		    .forty-percent {width: 40%;}
+		    .forty-five-percent {width: 45%;}
+		    .fifty-percent {width: 50%;}
+		    .fifty-five-percent {width: 55%;}			
+			.sixty-percent {width: 60%;}
+			.sixty-five-percent {width: 65%;}
+			.seventy-percent {width: 70%;}
+			.seventy-five-percent {width: 75%;}
+			.eighty-percent {width: 80%;}
+			.eighty-five-percent {width: 85%;}
+			.ninety-percent {width: 90%;}
+			.ninety-five-percent {width: 95%;}
+			.hundred-percent {width: 100%;}			
+			.top-alignment {vertical-align: top;}
+			.middle-alignment {vertical-align: middle;}
+			.bottom-alignment {vertical-align: bottom;}
+	   </style>	   
+	</h:head>
+	
+	<h:body style="background-color: #FDFEFE">
+		<h:form id="formTemplate">
+			<div style="float: right;">			
+				<table>
+					<tr>
+						<td colspan="2" style="text-align: center;">
+							<p:commandButton icon="ui-icon-home" value="Intranet" immediate="true" update="@all" action="#{utilController.intranet()}" rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px; "/>
+							<p:outputLabel value=" "/>
+							<p:commandButton icon="ui-icon-person" value="Trocar Perfil" action="#{utilController.selecionarPerfil()}" immediate="true" update="@all" rendered="#{usuarioSessao.usuarioLogado and usuarioSessao.perfilSelecionado and usuarioSessao.multipluPerfil}" style="font-size: 12px;"/>
+							<p:outputLabel value=" "/>
+							<p:commandButton icon="ui-icon-power" value="Logout" immediate="true" update="@all" action="#{utilController.logout()}" rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px; "/>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: right;"><p:outputLabel value="usuário: " rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px;"/></td>
+						<td><p:outputLabel value="#{usuarioSessao.login}" rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px; font-weight: bold;"/></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;"><p:outputLabel value="nome: " rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px;"/></td>
+						<td><p:outputLabel value="#{usuarioSessao.nome}" rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px; font-weight: bold;"/></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;"><p:outputLabel value="perfil: " rendered="#{usuarioSessao.usuarioLogado and usuarioSessao.perfilSelecionado}" style="font-size: 12px;"/></td>
+						<td><p:outputLabel value="#{usuarioSessao.perfil}" rendered="#{usuarioSessao.usuarioLogado and usuarioSessao.perfilSelecionado}" style="font-size: 12px; font-weight: bold;"/></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;"><p:outputLabel value="email: " rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px;"/></td>
+						<td><p:outputLabel value="#{usuarioSessao.email}" rendered="#{usuarioSessao.usuarioLogado}" style="font-size: 12px; font-weight: bold;"/></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;"><p:outputLabel value="unidade: " rendered="#{usuarioSessao.usuarioLogado and usuarioSessao.usuarioPossuiUnidade}" style="font-size: 12px;"/></td>
+						<td><p:outputLabel value="#{usuarioSessao.unidade}" rendered="#{usuarioSessao.usuarioLogado and usuarioSessao.usuarioPossuiUnidade}" style="font-size: 12px; font-weight: bold;"/></td>
+					</tr>				
+				</table>										
+			</div>
+	
+			<center>
+				<p:graphicImage value="/images/cabecalho.png"/><br/>
+				<p:outputPanel rendered="#{not configuracaoAplicacao.ambienteProducao}">
+					<br/>
+					<div style="background-color: #ffb380;"><p:outputLabel value="HOMOLOGAÇÃO" style="font-size: 20px; color: #ffffff; font-weight: bold;"/></div>						
+				</p:outputPanel>
+			</center>
+		</h:form>
+	    <br/>
+	    <br/>
+	    <ui:insert name="conteudo"/>
+	    
+	    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />	    
+	    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+          <p:graphicImage value="/images/progressbar.gif"/>
+        </p:dialog>   
+	</h:body>
+</html>

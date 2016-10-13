@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			<h:form id="formErro">
+				<br/>
+				<p:outputPanel style="margin: auto; text-align: center;">					
+					<p:messages id="idMensagem" showDetail="true" showSummary="false" closable="false" showIcon="false"/>
+					<p:outputLabel value="#{sessionScope['mensagemErro']}"/>
+					<br/>
+					<p:commandButton action="login" icon="ui-icon-arrow-1-w" value="Voltar" ajax="false" />
+				</p:outputPanel>
+			</h:form>
+		</ui:define>
+	</ui:composition>    
+</html>
