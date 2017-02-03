@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">      
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>NOME-APLICACAO (EXTRAIR WEB.XML)</title>
+            </f:facet>
+            <h:outputStylesheet name="css/jsfcrud.css"/>            
+            <h:outputStylesheet name="css/trt23.css"/>  
+            <h:outputScript library="js" name="PrimeFaces.locales.pt_BR.js"/>
+            <h:outputScript library="js" name="trt23.js"/>            
+            <ui:insert name="head"/>
+        </h:head>
+
+        <h:body>
+            <ui:debug rendered="true" hotkey="l"/>            
+            <p:layout fullPage="true" style="border-width: 1px;">
+                <p:layoutUnit position="west" size="225"  collapsible="false">
+                    <ui:include src="/menu.xhtml"/>                  
+                </p:layoutUnit>                
+                <p:layoutUnit position="center">
+                    <center>
+                        <p:outputPanel rendered="#{configuracaoAplicacao.ambienteHomologacao}">
+                            <div style="background-color: #ffb380;"><p:outputLabel value="HOMOLOGAÇÃO" style="font-size: 20px; color: #ffffff; font-weight: bold;"/></div>						
+                        </p:outputPanel>
+                        <p:outputPanel rendered="#{configuracaoAplicacao.ambienteDesenvolvimento}">
+                            <div style="background-color: #10FF00;"><p:outputLabel value="DESENVOLVIMENTO" style="font-size: 20px; color: #ffffff; font-weight: bold;"/></div>						
+                        </p:outputPanel>                        
+                    </center>
+                    <div class="ui-grid">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-8">
+                            </div>
+                            <div class="ui-grid-col-4">
+                                <h:form id="webAcessoForm">
+                                    <div class="ui-grid">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-10">
+                                                <div class="ui-grid">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-4">
+                                                            <h:outputLabel value="Usuário"/>
+                                                        </div>
+                                                        <div class="ui-grid-col-8 alignRight">
+                                                            <h:outputText value="LOGIN-DO-USUARIO"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-4">
+                                                            <h:outputLabel value="Nome"/>
+                                                        </div>
+                                                        <div class="ui-grid-col-8 alignRight">
+                                                            <h:outputText styleClass="alignRight" value="NOME-DO-USUARIO"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-4">
+                                                            <h:outputLabel value="Perfil"/>
+                                                        </div>
+                                                        <div class="ui-grid-col-8 alignRight">
+                                                            <p:selectOneMenu value="PERFIL-ATIVO" >
+                                                                <f:selectItem itemLabel="PERFIL-ATIVO" itemValue="PERFIL-ATIVO" />
+                                                                <f:selectItem itemLabel="PERFIL-SECUNDARIO" itemValue="PERFIL-SECUNDARIO" />                                                                                    
+                                                            </p:selectOneMenu>
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-4">
+                                                            <h:outputLabel value="Unidade"/>
+                                                        </div>
+                                                        <div class="ui-grid-col-8 alignRight">
+                                                            <h:outputText value="LOTACAO-DO-USUARIO"/>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-col-2 alignRight">
+                                                <div class="ui-grid-row" style="display:block;">
+                                                    <p:commandButton title="Perfil"  icon="ui-icon-contact" rendered="false"/>                                                                    
+                                                </div>
+                                                <div class="ui-grid-row" style="display:block;">
+                                                    <p:commandButton title="Logout"  icon="ui-icon-locked" immediate="true" update="@all" style="font-size: 12px; "/>                                                    
+                                                </div>                                            
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>     
+                        </div>    
+                    </div>
+                    <ui:insert name="content"></ui:insert>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

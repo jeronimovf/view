@@ -4,14 +4,14 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.jus.trt23</groupId>
-    <artifactId>view</artifactId>
+    <artifactId>view2</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>view</name>
+    <version>2.0.0-SNAPSHOT</version>
+    <name>View 2</name>
 
     <properties>
         <!-- Maven -->
-        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <ambiente>desenvolvimento</ambiente>
         <!-- Plugin Version -->
         <properties.maven.plugin.version>1.0-alpha-2</properties.maven.plugin.version>
@@ -60,6 +60,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>					
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>

@@ -1,39 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="/template/template.xhtml">
-	<ui:define name="conteudo">
-	    <h:form id="form">
-	    	<f:event type="preRenderView" listener="#{autenticacaoController.autenticarCAS()}" />
-			<center>
-				<p:panelGrid id="idGridLogin">
-				    <f:facet name="header">
-				    	<p:row><p:column colspan="2">Autenticação</p:column></p:row>
-				    </f:facet>			 				   		    	
-	
-			    	<p:row>
-				    	<p:column style="text-align: right;">    					
-	        				<p:outputLabel value="Login:"/> 
-				    	</p:column>	
-				    	<p:column><p:inputText value="#{autenticacaoController.login}" size="50" maxlength="70" required="true" requiredMessage="O campo 'Login' é obrigatório." /></p:column>			   			    	    			   
-					</p:row>
-					
-					<p:row>
-				    	<p:column style="text-align: right;">    					
-	        				<p:outputLabel value="Senha:"/> 
-				    	</p:column>	
-				    	<p:column><p:password value="#{autenticacaoController.senha}" size="50" maxlength="50" required="true" requiredMessage="O campo 'Senha' é obrigatório."/> </p:column>			   			    	    			   
-					</p:row>
-				</p:panelGrid>	
-				<br/>			
-				<p:messages id="idMensagem" showDetail="true" showSummary="false" closable="true" />										
-				<p:commandButton action="#{autenticacaoController.autenticar()}" icon="ui-icon-locked" value="Autenticar" update="@all" />
-			</center>        
-	    </h:form>
-	    </ui:define>
-	</ui:composition>    
+    <ui:composition template="/template.xhtml">
+        <ui:define name="header">
+        </ui:define>
+        <ui:define name="content">
+            Em breve: manual do sistema.
+        </ui:define>
+    </ui:composition>
 </html>
+
