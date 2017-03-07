@@ -13,6 +13,7 @@
         <cc:attribute name="converter"/>
         <cc:attribute name="readonly" class="java.lang.Boolean" default="false"/>
         <cc:attribute name="title" class="java.lang.String"/>
+        <cc:attribute name="collectionType" class="java.lang.String" default="java.util.ArrayList"/>                
     </cc:interface>
 
     <cc:implementation>
@@ -28,7 +29,7 @@
                                  converter="#{cc.attrs.converter}"
                                  disabled="true">  
                     <f:selectItems value="#{cc.attrs.itemValues}"/>
-                    <f:attribute name="collectionType" value="java.util.ArrayList" />                                        
+                    <f:attribute name="collectionType" value="#{cc.attrs.collectionType}" />                                        
                 </p:selectOneMenu>
 
             </c:if>
@@ -38,7 +39,7 @@
                                  styleClass="formRowValue" 
                                  converter="#{cc.attrs.converter}">  
                     <f:selectItems value="#{cc.attrs.itemValues}"/>
-                    <f:attribute name="collectionType" value="java.util.ArrayList" />                                        
+                    <f:attribute name="collectionType" value="#{cc.attrs.collectionType}" />                                        
                 </p:selectOneMenu>
             </c:if>                                                          
         </div>

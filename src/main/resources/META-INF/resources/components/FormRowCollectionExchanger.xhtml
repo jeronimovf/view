@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:t="http://xmlns.jcp.org/jsf/composite/components">
+
+    <cc:interface>
+        <cc:attribute name="labelValue"/>
+        <cc:attribute name="converter"/>
+        <cc:attribute name="readonly" class="java.lang.Boolean" default="false"/>
+        <cc:attribute name="title" class="java.lang.String"/>
+        <cc:attribute name="collectionType" class="java.lang.String" default="java.util.ArrayList"/>        
+        <cc:attribute name="scrollHeight" class="java.lang.Short" default="80"/> 
+        <cc:attribute 
+            name="collectionExchanger" 
+            class="br.jus.trt23.nucleo.handlers.CollectionExchanger" 
+            required="true"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <div class="formRow">
+            <p:outputLabel value="#{cc.attrs.labelValue}"/>
+            <div class="ui-g" align="center">
+                <div class="ui-g-5" align="center">
+                    <t:FormRowSelectManyMenu 
+                        collectionType="java.util.HashSet"
+                        labelValue="#{messages.Source}"
+                        itemValues="#{cc.attrs.collectionExchanger.sourceCollection}"
+                        selectValue="#{cc.attrs.collectionExchanger.sourceCollectionSelected}"
+                        converter="#{flowConverter}"
+                        updateWhat="@form"/>                        
+                </div>
+                <div class="ui-g-2" align="center">
+                    <p:commandButton value="&gt;&gt;" id="addAll" actionListener="#{cc.attrs.collectionExchanger.addAll}" disabled="#{not cc.attrs.collectionExchanger.addAllAllowed()}" update="@form" /><br/>
+                    <p:commandButton value="&gt;" id="addSelected" actionListener="#{cc.attrs.collectionExchanger.addSelected}"  disabled="#{not cc.attrs.collectionExchanger.addSelectedAllowed()}" update="@form"/><br/>
+                    <p:commandButton value="&lt;" id="removeSelected" actionListener="#{cc.attrs.collectionExchanger.removeSelected}"  disabled="#{not cc.attrs.collectionExchanger.removeSelectedAllowed()}" update="@form"/><br/>
+                    <p:commandButton value="&lt;&lt;" id="removeAll" actionListener="#{cc.attrs.collectionExchanger.removeAll}"  disabled="#{not cc.attrs.collectionExchanger.removeAllAllowed()}" update="@form"/>                                                        
+                </div>
+                <div class="ui-g-5" align="center">
+                    <t:FormRowSelectManyMenu 
+                        labelValue="#{messages.Destination}"
+                        collectionType="java.util.HashSet"
+                        itemValues="#{cc.attrs.collectionExchanger.destinationCollection}"
+                        selectValue="#{cc.attrs.collectionExchanger.destinationCollectionSelected}"
+                        converter="#{flowConverter}"
+                        updateWhat="@form"/>    
+                </div>                    
+            </div>   
+        </div>
+    </cc:implementation>
+</html>
