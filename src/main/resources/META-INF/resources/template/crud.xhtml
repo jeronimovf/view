@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:param name="action" value="#{action}"/>
+	<ui:param name="titulo" value="#{titulo}"/>
+	<ui:composition template="/template/template.xhtml">
+	<ui:define name="conteudo">
+	    <h:form id="form">
+			
+			<center>			
+				<h2><p:outputLabel value="#{titulo}"/></h2>			
+				
+				<p:outputPanel style="width: 80%;" rendered="#{!action.habilitaNovo}">				
+					<p:commandButton action="#{action.voltar()}" icon="ui-icon-arrow-1-w" value="Voltar" ajax="false" immediate="true" style="float: left;"/>
+					<p:outputLabel value=" "/>
+					<p:commandButton action="#{action.novo()}" icon="ui-icon-plus" value="Novo" update="@all" style="float: left;" rendered="#{action.botaoNovo}" />
+				</p:outputPanel>
+				<br/><br/>
+				<p:messages id="idMensagem" showDetail="true" showSummary="false" closable="true" />
+				<br/>
+				
+				<p:outputPanel id="idPanelPesquisa" style="width: 80%;">
+					<p:outputPanel rendered="#{!action.habilitaNovo and action.habilitaPesquisa}" style="width: 100%;">
+						<p:panelGrid columns="2" style="border: none;">
+							<f:facet name="header">Filtro</f:facet>
+							<h:panelGroup>
+								<ui:insert name="pesquisa"/>	
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:commandButton id="Btn_Pesquisar_Crudview" action="#{action.pesquisar()}" icon="ui-icon-search" value="Pesquisar" update="@all" />
+							</h:panelGroup>
+						</p:panelGrid>						
+						<br/><br/>
+					</p:outputPanel>
+				</p:outputPanel>
+							
+				<p:outputPanel id="idPanelLista" style="width: 80%;">				
+					<p:outputPanel rendered="#{!action.habilitaNovo}">
+						<p:outputPanel rendered="#{action.lista ne null}">
+							<ui:insert name="listagem"/>
+						</p:outputPanel>
+					</p:outputPanel>
+				</p:outputPanel>
+				
+				<p:outputPanel id="idPanelCadastro">
+					<p:outputPanel rendered="#{action.habilitaNovo}">
+						<ui:insert name="formulario"/>																						
+						<p:commandButton action="#{action.salvar()}" icon="ui-icon-check" value="Salvar" update="@all" rendered="#{action.botaoSalvar}"/>
+						<p:outputLabel value=" "/>
+						<p:commandButton action="#{action.cancelar()}" icon="ui-icon-cancel" immediate="true" value="Cancelar" update="@all" />
+					</p:outputPanel>
+				</p:outputPanel>
+				<br/>				
+			</center>
+	        
+	        <p:confirmDialog global="true">
+	        	<center>
+			        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		        </center>
+		    </p:confirmDialog>
+	        
+	    </h:form>
+	</ui:define>
+	</ui:composition>	    
+</html>
